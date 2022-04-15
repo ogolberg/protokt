@@ -2,4 +2,4 @@ name: Make gradlew executable
 runs:
   using: composite
   steps:
-    run: chmod +x gradlew
+    - run: chmod +x gradlew
