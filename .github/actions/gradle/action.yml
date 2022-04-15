@@ -5,6 +5,7 @@ inputs:
   working-directory:
     required: true
     default: .
+runs:
   using: composite
   steps:
     - name: Make gradle executable
