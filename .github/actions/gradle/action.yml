@@ -10,7 +10,7 @@ runs:
   steps:
     - name: Make gradle executable
       shell: bash
-      run: chmox +x gradlew
+      run: chmod +x gradlew
     - name: Run gradle
       shell: bash
       run: ./gradlew ${{ inputs.command }} --no-daemon --stacktrace
