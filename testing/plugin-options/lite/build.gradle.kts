@@ -16,7 +16,7 @@
 import com.toasttab.protokt.gradle.protokt
 import com.toasttab.protokt.gradle.protoktExtensions
 
-localProtokt()
+localProtokt(coverage = true)
 pureKotlin()
 
 protokt {

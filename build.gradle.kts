@@ -45,6 +45,7 @@ allprojects {
 promoteStagingRepo()
 
 subprojects {
+    apply(plugin = "jacoco")
     apply(plugin = "idea")
     if (name.contains("android")) {
         apply(plugin = "com.android.library")

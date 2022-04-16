@@ -21,13 +21,15 @@ import com.toasttab.protokt.gradle.resolveProtoktCoreDep
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.internal.jacoco.JacocoAgentJar
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.get
 import org.gradle.kotlin.dsl.project
 import org.gradle.kotlin.dsl.the
 import org.gradle.kotlin.dsl.withType
+import org.gradle.testing.jacoco.plugins.JacocoTaskExtension
 
-fun Project.localProtokt() {
+fun Project.localProtokt(coverage: Boolean = false) {
     configureProtokt(this) {
         if (name !in setOf("protokt-core", "protokt-core-lite")) {
             project.afterEvaluate {
@@ -43,6 +45,10 @@ fun Project.localProtokt() {
     afterEvaluate {
         tasks.withType<GenerateProtoTask> {
             dependsOn(":protokt-codegen:installDist")
+
+            if (coverage) {
+                metaClass = GenerateProtoTaskExecInterceptor(metaClass, "/Users/ogolberg/Downloads/org.jacoco.agent-0.8.8-runtime.jar=destfile=${buildDir}/codegen.exec").apply { initialize() }
+            }
         }
     }
 }

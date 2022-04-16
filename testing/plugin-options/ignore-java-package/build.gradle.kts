@@ -16,7 +16,7 @@
 import com.google.protobuf.gradle.proto
 import com.toasttab.protokt.gradle.protokt
 
-localProtokt()
+localProtokt(coverage = true)
 pureKotlin()
 
 sourceSets {
